@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Attendance app</title>
+</head>
+<body>
+    <form autocomplete="off" mathod="post" name="google-sheet">
+        Date:<br>
+        <input type="date" name="Date"><br><br>
+        present:<br>
+        <select name="Attendance">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select><br><br>
+        Over Time:<br>
+        <select name="OT">
+            <option value="1hrs">1hrs</option>
+            <option value="2hrs">2hrs</option>
+            <option value="3hrs">3hrs</option>
+        </select><br><br>
+        <input type="submit" value="Submit" class="button" name="submit">
+        <a href="display.html"><div>sds</div></a>
+    </form>
+
+    <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwmAb_dnSkzwrhktqFF-BsXoflApjY1RIGsiOVU2U0BeLABOvfSRXUG47r9swftljCtvQ/exec'
+            const form = document.forms['google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => alert("Your Attendance has been done"))
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script>
+</body>
+</html>
